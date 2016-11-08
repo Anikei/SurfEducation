@@ -6,6 +6,18 @@
     android:orientation="vertical"
     android:id="@+id/main_layout">
 
+    <Button
+        android:id="@+id/main_teleport_button"
+        android:layout_width="100"
+        android:layout_height="100"
+        android:text="Click me!"
+        android:color="red"
+        android:onClick="teleport"
+        tools:visibility="visible"
+        >
+
+    </Button>
+
     <GridView
         android:id="@+id/tasks"
         android:layout_width="match_parent"

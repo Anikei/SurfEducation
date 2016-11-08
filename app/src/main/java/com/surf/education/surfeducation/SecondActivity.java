@@ -6,13 +6,35 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-//startandroid.ru/ru/uroki/vse-uroki-spiskom/
-public class MainActivity extends AppCompatActivity {
+
+/**
+ * интенты вызывают активити, вызывают сервисы, используются для рассылки бордкастов
+ * интенты делятся на явные(переход между экранами, четкий переход в конкретное место) и неявные
+ */
+public class SecondActivity extends AppCompatActivity {
+    public static final String FIRST_NAME = "firstName";
+    public static final String LAST_NAME = "lastName";
+
+    //вызов интента
+    public static void start(Context context, String firstname, String lastname) {
+        Intent intent = new Intent(context, SecondActivity.class);
+
+        intent.putExtra(FIRST_NAME, firstname);
+        intent.putExtra(LAST_NAME, lastname);
+        Log.d("TAG", FIRST_NAME + " " + LAST_NAME);
+
+        context.startActivity(intent);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.main_activity);
+
+        Intent intent = getIntent();
+        String firstName = intent.getStringExtra(FIRST_NAME);
+        String lastName = intent.getStringExtra(LAST_NAME);
+
+        setContentView(R.layout.second_activity);
     }
 
     @Override
@@ -80,23 +102,5 @@ public class MainActivity extends AppCompatActivity {
         //всё это вернется в onCreate()
         //не использовать для сохранения данных, отличных от
     }
-
-    //поправить
-    public void teleport(new int id) {
-        SecondActivity.start(MainActivity.this, "Имя", "Фамилия");
-    }
-
-    //TODO: дописать код неявного интента
-    public void teleportToSpace(new int id) {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);
-        sendIntent.setType("text/plain");
-
-        if (sendIntent.resolveActivity(getPackagemanager()) != null) {
-            startActivity(intent);
-        }
-    }
-
 
 }
