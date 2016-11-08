@@ -4,25 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/main_layout">
+    android:id="@+id/main_layout"
+    android:visibility="visible" >
 
     <Button
-        android:id="@+id/main_teleport_button"
-        android:layout_width="100"
-        android:layout_height="100"
-        android:text="Click me!"
-        android:color="red"
-        android:onClick="teleport"
-        tools:visibility="visible"
-        >
 
-    </Button>
+        android:text="Button"
 
-    <GridView
-        android:id="@+id/tasks"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="visible">
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:visibility="visible"
+        android:onClick="teleport()" />
 
-    </GridView>
+    <CheckBox
+        android:text="CheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox" />
 </LinearLayout>

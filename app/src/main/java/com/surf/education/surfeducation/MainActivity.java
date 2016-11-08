@@ -1,5 +1,6 @@
 package com.surf.education.surfeducation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -8,16 +9,13 @@ import android.util.Log;
 
 //startandroid.ru/ru/uroki/vse-uroki-spiskom/
 public class MainActivity extends AppCompatActivity {
-
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.main_activity);
-    }
+    public String firstName = "John";
+    public String lastName = "Doe";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_activity);
         //также можно использовать, но редко onRestoreInstanceState(savedInstanceState);
         Log.d("TAG", "onCreate");
         if (savedInstanceState != null) {
@@ -98,5 +96,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    public void teleport() {
+        Intent intent = new Intent(this, TargetActivity.class);
+        intent.putExtra("firstName", firstName);
+        intent.putExtra("lastName", lastName);
+        startActivity(intent);
+    }
+    */
 
 }
