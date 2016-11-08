@@ -7,6 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+
+//dpi =c/inch, где width^2 + height^2 = c^2
+//размеры всегда указывать в dp, не в px
+//шрифты - в sp
 //startandroid.ru/ru/uroki/vse-uroki-spiskom/
 public class MainActivity extends AppCompatActivity {
     public String firstName = "John";
@@ -80,19 +84,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //поправить
-    public void teleport(new int id) {
+    public void teleport(int id) {//тут был new
         SecondActivity.start(MainActivity.this, "Имя", "Фамилия");
     }
 
     //TODO: дописать код неявного интента
-    public void teleportToSpace(new int id) {
+    public void teleportToSpace(int id) {//тут был new
+        String textMessage = "xxx";
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, textMessage);
         sendIntent.setType("text/plain");
 
-        if (sendIntent.resolveActivity(getPackagemanager()) != null) {
-            startActivity(intent);
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
         }
     }
 
