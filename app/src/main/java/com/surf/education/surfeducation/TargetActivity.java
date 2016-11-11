@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class TargetActivity extends AppCompatActivity {
 
@@ -18,6 +20,14 @@ public class TargetActivity extends AppCompatActivity {
         Log.d("TAG", firstName + " + " + lastName);
 
         setContentView(R.layout.target_activity);
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.target_activity);
+        TextView label = new TextView(this);
+        label.setText(firstName + " " + lastName);
+        layout.addView(label);
+
+
+
 
         /*
         добавить в метод startActivity()

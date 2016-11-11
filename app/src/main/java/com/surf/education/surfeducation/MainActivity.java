@@ -6,21 +6,50 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 //dpi =c/inch, где width^2 + height^2 = c^2
 //размеры всегда указывать в dp, не в px
 //шрифты - в sp
 //startandroid.ru/ru/uroki/vse-uroki-spiskom/
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public String firstName = "John";
     public String lastName = "Doe";
+
+    /**
+     * 1) в реальности практически не прописывается в android:onclick
+     * 2) анонимный класс в setOnClickListener()
+     * 3) реализация интерфейса View.onClickListener в классе, содержащем ссылку на экземпляр
+     * button, затем передать в метод конкретного экземпляра Button setOnClickListener() текущий контекст
+     */
+    public void myClickHandler(View target) {
+        teleport();// Do stuff
+    }
+
+
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         //также можно использовать, но редко onRestoreInstanceState(savedInstanceState);
+
+        Button teleportButton = (Button) findViewById(R.id.main_goto_button);
+        //teleportButton.setOnClickListener(this);
+        Button second = (Button) findViewById(R.id.second);
+        second.setOnClickListener(this);
+        Button third = (Button) findViewById(R.id.third);
+        third.setOnClickListener(this);
+
+        //teleportButton.setOnClickListener();
+
+        ImageView view = (ImageView) findViewById(R.id.image);
+
         Log.d("TAG", "onCreate");
         if (savedInstanceState != null) {
             String label = savedInstanceState.getString("label");
@@ -84,9 +113,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //поправить
+    /*
     public void teleport(int id) {//тут был new
         SecondActivity.start(MainActivity.this, "Имя", "Фамилия");
     }
+    */
 
     //TODO: дописать код неявного интента
     public void teleportToSpace(int id) {//тут был new
@@ -101,13 +132,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*
+
     public void teleport() {
         Intent intent = new Intent(this, TargetActivity.class);
-        intent.putExtra("firstName", firstName);
-        intent.putExtra("lastName", lastName);
+
+        EditText input = (EditText) findViewById(R.id.input);
+
+        intent.putExtra("firstName", input.getText().toString());
+        intent.putExtra("lastName", "");
+
         startActivity(intent);
     }
-    */
+
+
+    @Override
+    public void onClick(View view) {
+        view.setOnClickListener(this);
+    }
 
 }
