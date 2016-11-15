@@ -2,7 +2,6 @@ package com.surf.education.surfeducation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,12 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 
 //dpi =c/inch, где width^2 + height^2 = c^2
 //размеры всегда указывать в dp, не в px
 //шрифты - в sp
 //startandroid.ru/ru/uroki/vse-uroki-spiskom/
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    EditText input = (EditText) findViewById(R.id.input);
+
     public String firstName = "John";
     public String lastName = "Doe";
 
@@ -28,10 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void myClickHandler(View target) {
         teleport();// Do stuff
     }
-
-
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +47,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //teleportButton.setOnClickListener();
 
         ImageView view = (ImageView) findViewById(R.id.image);
+
+        RadioGroup switcher = (RadioGroup) findViewById(R.id.group);
+        /*
+        switcher.setOnCheckedChangeListener(new RadioGroup.on {
+            @Override
+            public void onCheckedChanged(RadioGroup switcher, int checkedId {
+                //TODO:
+            }
+
+            )
+        });
+        */
+
 
         Log.d("TAG", "onCreate");
         if (savedInstanceState != null) {
@@ -136,11 +147,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void teleport() {
         Intent intent = new Intent(this, TargetActivity.class);
 
-        EditText input = (EditText) findViewById(R.id.input);
+        /**
+         * text
+         * textEmailAddress
+         * textUri
+         * ...
+         */
 
         intent.putExtra("firstName", input.getText().toString());
         intent.putExtra("lastName", "");
-
         startActivity(intent);
     }
 
@@ -150,4 +165,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         view.setOnClickListener(this);
     }
 
+/*
+check_box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked {
+		//TODO:
+	}
+});
+*/
+
+//checkBox.toogle() - инверсия значения
+
+//Чем больше уровней вложенности в контейнерах, тем тормознее (не больше 10 уровней вложенности)
+
+    /*
+    * от легкого к тяжелому
+    * FrameLayout - все друг на друга с перекрытиями, поддерживает gravity для компонентов содержимого
+    * LinearLayout - Weight доступен только в этом контейнере
+    * RelativeLayout - весьма ресурсоемкий, тормозит при большом содержимом
+    * android:layout_below="@+id/btn1" //если ссылать на то, чего нет выше по списку - может ругнуться
+    * android:layout_above="@+id/btn2" //нельзя делать циклические отношения
+    * android:layout_toRightOf="@+id/btn1"
+    * android:layout_toLeftOf="@+id/btn2"
+    * anroid:layout_alignTop - позиционирование границы эл-та по границе другого эл-та
+
+позиционирование относительно контейнера
+android:layout_centerInParent="true"
+
+позиционирование относительно границ контейнера
+android:layout_alignParentLeft
+    */
 }
