@@ -9,17 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 
 //dpi =c/inch, где width^2 + height^2 = c^2
 //размеры всегда указывать в dp, не в px
 //шрифты - в sp
 //startandroid.ru/ru/uroki/vse-uroki-spiskom/
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText input = (EditText) findViewById(R.id.input);
-
-    public String firstName = "John";
-    public String lastName = "Doe";
+    EditText input;
 
     /**
      * 1) в реальности практически не прописывается в android:onclick
@@ -35,20 +31,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        input = (EditText) findViewById(R.id.input);
+
         //также можно использовать, но редко onRestoreInstanceState(savedInstanceState);
 
         Button teleportButton = (Button) findViewById(R.id.main_goto_button);
         //teleportButton.setOnClickListener(this);
+
+
+        /*
+        RadioGroup switcher = (RadioGroup) findViewById(R.id.group);
         Button second = (Button) findViewById(R.id.second);
         second.setOnClickListener(this);
         Button third = (Button) findViewById(R.id.third);
         third.setOnClickListener(this);
+        */
 
         //teleportButton.setOnClickListener();
 
         ImageView view = (ImageView) findViewById(R.id.image);
 
-        RadioGroup switcher = (RadioGroup) findViewById(R.id.group);
+
         /*
         switcher.setOnCheckedChangeListener(new RadioGroup.on {
             @Override
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          */
 
         intent.putExtra("firstName", input.getText().toString());
+        //intent.putExtra("firstName", "");
         intent.putExtra("lastName", "");
         startActivity(intent);
     }
@@ -195,4 +199,11 @@ android:layout_centerInParent="true"
 позиционирование относительно границ контейнера
 android:layout_alignParentLeft
     */
+
+    /**
+     * gridView
+     * TableView
+     * скроллвью сожержит только один элемент, все остальное нужно класть уже в него
+     * <include layout="@layout/another_layout"/> - копировать готовые лаяуты
+     */
 }

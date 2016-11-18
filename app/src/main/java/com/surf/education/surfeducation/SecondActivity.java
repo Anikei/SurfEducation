@@ -28,16 +28,22 @@ public class SecondActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
+    /*
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+    public void onCreate(Bundle savedInstanceState, Bundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
 
         Intent intent = getIntent();
         String firstName = intent.getStringExtra(FIRST_NAME);
         String lastName = intent.getStringExtra(LAST_NAME);
 
+        firstName = "1";
+        lastName = "2";
+
         setContentView(R.layout.second_activity);
+        //StepperView stepperView = (StepperView) findViewById(R.id.stepper);
     }
+    */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +54,7 @@ public class SecondActivity extends AppCompatActivity {
             String label = savedInstanceState.getString("label");
             Log.d("TAG", label);
         }
+        setContentView(R.layout.second_activity);
     }
 
     @Override

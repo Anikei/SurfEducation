@@ -26,9 +26,6 @@ public class TargetActivity extends AppCompatActivity {
         label.setText(firstName + " " + lastName);
         layout.addView(label);
 
-
-
-
         /*
         добавить в метод startActivity()
         Intent sendIntent = new Intent();
