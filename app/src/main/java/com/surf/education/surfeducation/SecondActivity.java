@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-
 /**
  * интенты вызывают активити, вызывают сервисы, используются для рассылки бордкастов
  * интенты делятся на явные(переход между экранами, четкий переход в конкретное место) и неявные
@@ -55,6 +54,7 @@ public class SecondActivity extends AppCompatActivity {
             Log.d("TAG", label);
         }
         setContentView(R.layout.second_activity);
+        StepperView stepperView = (StepperView) findViewById(R.id.stepper);
     }
 
     @Override
@@ -113,3 +113,65 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 }
+
+
+/*
+
+customView - для собственных переиспользуемых элементов
+1) если элемент используется более одного раза
+2) если надо скрыть логику
+
+flaticon.com - хранилище иконок
+
+1) Создаем класс, расширяющий одну из ViewGroup
+
+public class $MyCustomViewName$View extends LinearLayout {
+
+}
+
+2) Далее создаем Layout, описывающий CustomView в XML
+
+3) Конструктор программный
+
+public MyComponentView(Context context) {
+	this(context, null);
+}
+
+4) Конструктор из XML
+
+public MyComponentView(Context context, AttributeSet attrs) {
+	super(context, attrs);
+	inflate(getContext(), R.layout.my_view_layout.this);
+	init();
+}
+
+5) inflate layout в custom view
+
+6) инициализация customview в init() методе
+
+7) создаем открытые методы для работы с customView
+
+8) используем
+
+
+
+
+Обработка событий из Custom View
+1) вставляем в сам файл с view
+public interface OnStepperViewListener {
+	void onClick();
+}
+
+2) вставляем сеттер
+public void setClickListener {
+	this.clickListener = listener;
+}
+
+3) вызываем
+
+	if (clickListener != null) { //на случай, если ни разу не вызывался
+		clickListener.onClick();
+	}
+
+
+*/
