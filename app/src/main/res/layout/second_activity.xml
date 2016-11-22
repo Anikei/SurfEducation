@@ -17,8 +17,7 @@
     <com.surf.education.surfeducation.StepperView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        baseColor="#000000" />
-
-
+        baseColor="#000000"
+        android:id="@+id/stepper"/>
 
 </LinearLayout>

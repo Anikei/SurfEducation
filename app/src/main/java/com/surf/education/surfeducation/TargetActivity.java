@@ -27,6 +27,8 @@ public class TargetActivity extends AppCompatActivity {
         layout.addView(label);
 
         /*
+        неявные интенты
+
         добавить в метод startActivity()
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND); //ACTION_CALL ACTION_SEARCH

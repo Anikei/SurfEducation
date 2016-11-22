@@ -58,7 +58,7 @@ public class StepperView extends LinearLayout {
     private void applyAttrs(Context context, AttributeSet attrs) {
         TypedArray a = context.getTheme().obtainStyledAttributes(
                 attrs, R.styleable.StepperView, 0, 0);
-        baseColor = a.getColor(R.styleable.StepperView_baseColor, R.color.colorPrimary);//red - дефолтное значение
+        baseColor = a.getColor(R.styleable.StepperView_baseColor, R.color.colorAccent);//red - дефолтное значение
         a.recycle();
     }
 

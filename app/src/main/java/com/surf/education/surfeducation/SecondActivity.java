@@ -3,10 +3,10 @@ package com.surf.education.surfeducation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 /**
  * интенты вызывают активити, вызывают сервисы, используются для рассылки бордкастов
@@ -25,6 +25,7 @@ public class SecondActivity extends AppCompatActivity {
         Log.d("TAG", FIRST_NAME + " " + LAST_NAME);
 
         context.startActivity(intent);
+        //TODO: выяснить, почему не работает onCreate
     }
 
     /*
@@ -54,8 +55,12 @@ public class SecondActivity extends AppCompatActivity {
             Log.d("TAG", label);
         }
         setContentView(R.layout.second_activity);
+        TextView label = (TextView) findViewById(R.id.text);
+        label.setText("LABEL");
         StepperView stepperView = (StepperView) findViewById(R.id.stepper);
     }
+
+
 
     @Override
     protected void onRestart() {
