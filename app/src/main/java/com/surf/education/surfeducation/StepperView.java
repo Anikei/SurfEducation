@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.util.Log;
 
 public class StepperView extends LinearLayout {
     ImageButton plusButton;
@@ -49,10 +51,12 @@ public class StepperView extends LinearLayout {
 
     private void incValue() {
         if (value < MAX_STEPPER_VALUE) {valueField.setText(++value);}
+        Log.d("TAG", Integer.toString(value));
     }
 
     private void decValue() {
         if (value > MIN_STEPPER_VALUE) {value--;}
+        Log.d("TAG", Integer.toString(value));
     }
 
     private void applyAttrs(Context context, AttributeSet attrs) {
