@@ -23,3 +23,27 @@ public class Task {
         return deadline;
     }
 }
+
+/*
+MODEL
+	TASK
+		-String(fix) name
+		-int startPoint (default = 0)
+		-int endPoint (default = 100)
+		-int currentPoint (default = startPoint)
+		-date startDate (default = today)
+		-date deadlineDate (default = today)
+
+		calc int percent = (currentPoint - startPoint) / endPoint
+		calc date estimateDate =
+
+	RECORD
+		-*Task
+		-date Date
+		-date Duration
+		-currentPoint
+
+	Journal
+		несортированный list[]<Record>
+
+*/
