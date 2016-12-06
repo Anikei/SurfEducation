@@ -45,6 +45,11 @@ public class SecondActivity extends AppCompatActivity {
     }
     */
 
+    protected int loadPrefs() {
+        SharedPreferences mySharedPreferences = getSharedPreferences(MYPREFS, Activity.MODE_PRIVATE);
+        return mySharedPreferences.getInt(“value”, 25);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +63,7 @@ public class SecondActivity extends AppCompatActivity {
         TextView label = (TextView) findViewById(R.id.text);
         label.setText("LABEL");
         StepperView stepperView = (StepperView) findViewById(R.id.stepper);
+        stepperView.setValue = loadPrefs();
     }
 
 

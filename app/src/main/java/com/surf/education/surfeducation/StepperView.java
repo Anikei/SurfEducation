@@ -18,6 +18,14 @@ public class StepperView extends LinearLayout {
     int value = 25;
     final int MAX_STEPPER_VALUE = 50;
     final int MIN_STEPPER_VALUE = 0;
+    public static final String MYPREFS = “mySharedPreferences”;
+
+    protected void savePref(int value) {
+        SharedPreferences mySharedPreferences = getSharedPreferences(MYPREFS, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor edit = mySharedPreferences.edit();
+        edit.putInt(“value”, value);
+        edit.commit();
+    }
 
     public StepperView(Context context) {
         this(context, null);
@@ -52,11 +60,13 @@ public class StepperView extends LinearLayout {
     private void incValue() {
         if (value < MAX_STEPPER_VALUE) {valueField.setText(++value);}
         Log.d("TAG", Integer.toString(value));
+        savePref(value);
     }
 
     private void decValue() {
         if (value > MIN_STEPPER_VALUE) {value--;}
         Log.d("TAG", Integer.toString(value));
+        savePref(value);
     }
 
     private void applyAttrs(Context context, AttributeSet attrs) {
@@ -66,4 +76,12 @@ public class StepperView extends LinearLayout {
         a.recycle();
     }
 
+    private void setValue(int value) {
+        this.value = value;
+    }
+
 }
+/*
+есть еще PreferencesActivity
+можно использовать SharedPrefernces для каждой активити
+ */
