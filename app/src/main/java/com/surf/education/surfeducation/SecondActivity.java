@@ -1,12 +1,16 @@
 package com.surf.education.surfeducation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
+
+import static com.surf.education.surfeducation.StepperView.MYPREFS;
 
 /**
  * интенты вызывают активити, вызывают сервисы, используются для рассылки бордкастов
@@ -47,23 +51,23 @@ public class SecondActivity extends AppCompatActivity {
 
     protected int loadPrefs() {
         SharedPreferences mySharedPreferences = getSharedPreferences(MYPREFS, Activity.MODE_PRIVATE);
-        return mySharedPreferences.getInt(“value”, 25);
+        return mySharedPreferences.getInt("value", 25);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //также можно использовать, но редко onRestoreInstanceState(savedInstanceState);
         Log.d("TAG", "onCreate");
         if (savedInstanceState != null) {
             String label = savedInstanceState.getString("label");
             Log.d("TAG", label);
         }
         setContentView(R.layout.second_activity);
+        /*
         TextView label = (TextView) findViewById(R.id.text);
-        label.setText("LABEL");
+        label.setText("LABEL");*/
         StepperView stepperView = (StepperView) findViewById(R.id.stepper);
-        stepperView.setValue = loadPrefs();
+        stepperView.setValue(loadPrefs());
     }
 
 

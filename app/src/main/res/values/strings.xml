@@ -8,4 +8,14 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_fragment">FragmentActivity</string>
     <string name="title_activity_pager">PagerActivity</string>
+
+    <plurals name="android_plural">
+        <item quantity="zero">Ты не должен этого увидеть</item>
+        <item quantity="one">%1$d раз</item>
+        <item quantity="two">%1$d раза</item>
+        <item quantity="few">%1$d раза</item>
+        <item quantity="many">%1$d раз</item>
+        <item quantity="other">%1$d раз</item>
+    </plurals>
+
 </resources>

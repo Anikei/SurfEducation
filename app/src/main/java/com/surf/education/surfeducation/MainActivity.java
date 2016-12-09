@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("label", "Restored!!!");
+
         //всё это вернется в onCreate()
         //не использовать для сохранения данных, отличных от
     }
