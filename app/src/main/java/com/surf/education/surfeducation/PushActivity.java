@@ -1,16 +1,13 @@
 package com.surf.education.surfeducation;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class PushActivity extends AppCompatActivity {
 
@@ -33,51 +30,49 @@ public class PushActivity extends AppCompatActivity {
 
     public void waitMe() {
 
-        Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
-        int duration = Toast.LENGTH_SHORT;
-
-        final Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        Log.d("TAG", "START");
 
         final Handler handler = new Handler() {
-            @Override
             public void handleMessage(Message msg) {
-                //textView.setText("Text");
+                Bundle bundle = msg.getData();
+                String date = bundle.getString("Key");
+                //textView.setText(date);
             }
         };
 
+        Runnable runnable = new Runnable() {
+            public void run() {
 
-        final Runnable runnable = new Runnable() {
-
-            //@Override
-            public void run(){
-
-                try {
-                    Thread.sleep(10000);
+                long endTime = System.currentTimeMillis() + 20 * 1000;
+                //код с предыдущего слайда
+              /*  try {
+                    Thread.sleep(20000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
-
-                /*
-                long endTime = System.currentTimeMillis() + 10 * 1000;
+                }*/
+                //код с предыдущего слайда
                 while (System.currentTimeMillis() < endTime) {
                     synchronized (this) {
-                        try {wait(endTime - System.currentTimeMillis());} catch (Exception e) {}
+                        try {
+                            Log.d("TAG", "START LOAD");
+                            wait(endTime - System.currentTimeMillis());
+                            Log.d("TAG", "FIN LOAD");
+                            Bundle bundle = new Bundle();
+                            bundle.putString("Key", "Text");
+                            Message msg = handler.obtainMessage();
+                            msg.setData(bundle);
+                            handler.sendMessage(msg);
+                        } catch (Exception e) {
+                        }
                     }
-                }*/
-                //PushActivity.this.findViewById(R.id.)
-
-                handler.sendEmptyMessage(0);
-
+                }
             }
         };
+
         Thread thread = new Thread(runnable);
         thread.start();
 
-//
-
-        toast.show();
+        Log.d("TAG", "FIN");
     }
 
 }
