@@ -17,5 +17,6 @@
         <item quantity="many">%1$d раз</item>
         <item quantity="other">%1$d раз</item>
     </plurals>
+    <string name="title_activity_push">PushActivity</string>
 
 </resources>
