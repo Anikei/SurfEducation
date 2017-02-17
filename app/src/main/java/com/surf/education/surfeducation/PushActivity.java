@@ -1,5 +1,9 @@
 package com.surf.education.surfeducation;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,11 +26,37 @@ public class PushActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                waitMe();
+                pingMe();
+                //waitMe();
             }
         });
+        registerBroadcastReceiver(findViewById(R.id.fab));
     }
 
+    class mimeBroadCastReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("TAG", "AZAZA");
+        }
+    }
+
+    public void registerBroadcastReceiver(View view) {
+        this.registerReceiver(new mimeBroadCastReceiver(), new IntentFilter(
+                "com.surf.education.MY_NOTIFICATION"));
+    }
+
+
+
+
+    public void pingMe() {
+
+        Intent intent = new Intent();
+        intent.setAction("com.surf.education.MY_NOTIFICATION");
+        intent.putExtra("data","Achtung!");
+        Log.d("TAG", "tick");
+        sendBroadcast(intent);
+    }
 
     public void waitMe() {
 
